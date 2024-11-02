@@ -8,61 +8,72 @@
 #include "button.h"
 
 
-int KeyReg0 = NORMAL_STATE;
-int KeyReg1 = NORMAL_STATE;
-int KeyReg2 = NORMAL_STATE;
+int KeyReg0[number_button] = {NORMAL_STATE};
+int KeyReg1[number_button] = {NORMAL_STATE};
+int KeyReg2[number_button] = {NORMAL_STATE};
 
-int KeyReg3 = NORMAL_STATE;
+int KeyReg3[number_button] = {NORMAL_STATE};
 int TimerForPressKey = 200;
 
-int button1_flag = 0;
+int button_flag[number_button] = {0};
 
-int isButtonPressed()
+int isButtonPressed(int index)
 {
-	if (button1_flag == 1)
+	if (button_flag[index] == 1)
 	{
-		button1_flag = 0;
+		button_flag[index] = 0;
 		return 1;
 	}
 	return 0;
 }
 
-void subProcess()
+void subProcess(int index)
 {
-	button1_flag = 1;
+	button_flag[index] = 1;
 }
 
 void getKeyInput()
 {
-	KeyReg0 = KeyReg1;
-	KeyReg1 = KeyReg2;
-	KeyReg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
-	if ((KeyReg0 == KeyReg1) && (KeyReg1 == KeyReg2))
+	for (int i = 0; i <= 3; i++)
 	{
-		if (KeyReg3 != KeyReg2)
-		{
-			KeyReg3 = KeyReg2;
-			if (KeyReg2 == PRESSED_STATE)
-			{
-				//TODO
-				subProcess();
-				TimerForPressKey = 200;
-			}
-		}
-		else
-		{
-			TimerForPressKey--;
-			if (TimerForPressKey == 0)
-			{
-//				if (KeyReg2 == PRESSED_STATE)
-//				{
-//					//TODO
-//					subProcess();
-//				}
-//				TimerForPressKey = 200;
-				KeyReg3 = NORMAL_STATE;
-			}
+		KeyReg0[i] = KeyReg1[i];
+		KeyReg1[i] = KeyReg2[i];
 
+		if (i == 1)
+			KeyReg2[1] = HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin);
+		if (i == 2)
+			KeyReg2[2] = HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
+		if (i == 3)
+			KeyReg2[3] = HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin);
+
+
+		if ((KeyReg0[i] == KeyReg1[i]) && (KeyReg1[i] == KeyReg2[i]))
+		{
+			if (KeyReg3[i] != KeyReg2[i])
+			{
+				KeyReg3[i] = KeyReg2[i];
+				if (KeyReg2[i] == PRESSED_STATE)
+				{
+					//TODO
+					subProcess(i);
+					TimerForPressKey = 200;
+				}
+			}
+			else
+			{
+				TimerForPressKey--;
+				if (TimerForPressKey == 0)
+				{
+	//				if (KeyReg2[i] == PRESSED_STATE)
+	//				{
+	//					//TODO
+	//					subProcess();
+	//				}
+	//				TimerForPressKey = 200;
+					KeyReg3[i] = NORMAL_STATE;
+				}
+
+			}
 		}
 	}
 }
