@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "glob.h"
+#include "global.h"
 #include "button.h"
 #include "software_timer.h"
 #include "fsm_automatic.h"
@@ -98,9 +98,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  status_horizontal_traffic = INIT;
-//  status_vertical_traffic = INIT;
+  status_horizontal_traffic = INIT;
+  status_vertical_traffic = INIT;
   clear_all_led();
+  clear_all_7seg();
   while (1)
   {
 	fsm_automatic_run();

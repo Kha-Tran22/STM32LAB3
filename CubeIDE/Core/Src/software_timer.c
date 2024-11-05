@@ -19,7 +19,7 @@ void setTimer(int index, int duration)
 
 void timerRun()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		if (timer_counter[i] >= 0)
 		{

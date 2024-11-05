@@ -22,4 +22,7 @@ void update_7seg_vertical(int index);
 
 void clear_all_7seg();
 
+void update_buffer_horizontal();
+void update_buffer_vertical();
+
 #endif /* INC_LED7_SEGMENT_H_ */

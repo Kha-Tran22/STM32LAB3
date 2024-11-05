@@ -20,7 +20,7 @@ char seg[10] =
 		0x00,
 		0x10};
 
-void display_number_horizontal(int number)
+void display_number_vertical(int number)
 {
 	char code = seg[number];
 
@@ -34,7 +34,7 @@ void display_number_horizontal(int number)
 	HAL_GPIO_WritePin(SEG0_G_GPIO_Port, SEG0_G_Pin, (code & 0x40) ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
-void display_number_vertical(int number)
+void display_number_horizontal(int number)
 {
 	char code = seg[number];
 
@@ -83,7 +83,7 @@ void clear_all_7seg()
 	HAL_GPIO_WritePin(GPIOB, SEG1_A_Pin | SEG1_B_Pin | SEG1_C_Pin | SEG1_D_Pin | SEG1_E_Pin | SEG1_F_Pin | SEG1_G_Pin, SET);
 }
 
-void update_7seg_horizontal(int index)
+void update_7seg_horizontal(int index_buffer_horizontal)
 {
 	switch (index_buffer_horizontal)
 	{
@@ -100,7 +100,7 @@ void update_7seg_horizontal(int index)
 	}
 }
 
-void update_7seg_vertical(int index)
+void update_7seg_vertical(int index_buffer_vertical)
 {
 	switch (index_buffer_vertical)
 	{
@@ -115,4 +115,16 @@ void update_7seg_vertical(int index)
 	default:
 		break;
 	}
+}
+
+void update_buffer_horizontal()
+{
+	led_buffer_horizontal[0] = counter_horizontal / 10;
+	led_buffer_horizontal[1] = counter_horizontal % 10;
+}
+
+void update_buffer_vertical()
+{
+	led_buffer_vertical[0] = counter_vertical / 10;
+	led_buffer_vertical[1] = counter_vertical % 10;
 }

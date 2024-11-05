@@ -8,12 +8,14 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
+#include "main.h"
 #include "software_timer.h"
 #include "button.h"
 #include "traffic.h"
 #include "led7_segment.h"
 #include "fsm_setting.h"
 #include "fsm_automatic.h"
+
 
 #define INIT	1
 #define AUTO_RED 	2

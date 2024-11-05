@@ -12,7 +12,7 @@
 
 #define NORMAL_STATE GPIO_PIN_SET
 #define PRESSED_STATE GPIO_PIN_RESET
-#define number_button 3
+#define number_button 4
 
 void getKeyInput();
 int isButtonPressed(int index);

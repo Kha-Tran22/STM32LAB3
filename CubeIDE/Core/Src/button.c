@@ -34,7 +34,7 @@ void subProcess(int index)
 
 void getKeyInput()
 {
-	for (int i = 0; i <= 3; i++)
+	for (int i = 1; i <= 3; i++)
 	{
 		KeyReg0[i] = KeyReg1[i];
 		KeyReg1[i] = KeyReg2[i];
