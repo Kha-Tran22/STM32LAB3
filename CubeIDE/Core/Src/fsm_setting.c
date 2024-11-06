@@ -28,19 +28,17 @@ void fsm_setting_run()
 		{
 			status_horizontal_traffic = MODE2;
 			setTimer(1, 10000); // đợi nút 1 chuyển mode
+			setTimer(2, 250); 
+			setTimer(3, 250); 
 		}
-
 		red_duration_tmp = red_duration;
 		green_duration_tmp = green_duration;
 		yellow_duration_tmp = yellow_duration;
 
-		setTimer(2, 250); // Nháy led báo hiệu chỉnh time
-		setTimer(3, 250); 
-
 		break;
 	case MODE2:
-		// enable_horizontal(0);
-		// display_number_horizontal(red_duration_tmp);
+		enable_vertical(0);
+		display_number_vertical(2);
 		counter_horizontal = red_duration_tmp;
 		update_buffer_horizontal();
 
@@ -73,10 +71,7 @@ void fsm_setting_run()
 		{
 			red_duration = red_duration_tmp;
 			status_horizontal_traffic = MODE1;
-			// timer_flag[0] = 1;
-			// timer_flag[3] = 1;
 			setTimer(0, 1000);
-			setTimer(3, 250);
 		}
 		if (timer_flag[1] == 1)
 		{
@@ -85,9 +80,8 @@ void fsm_setting_run()
 
 		break;
 	case MODE3:
-		// enable_horizontal(0);
-		// display_number_horizontal(green_duration_tmp);
-
+		enable_vertical(0);
+		display_number_vertical(3);
 		counter_horizontal = green_duration_tmp;
 		update_buffer_horizontal();
 
@@ -120,10 +114,7 @@ void fsm_setting_run()
 		{
 			green_duration = green_duration_tmp;
 			status_horizontal_traffic = MODE1;
-			// timer_flag[0] = 1;
-			// timer_flag[3] = 1;
 			setTimer(0, 1000);
-			setTimer(3, 250);
 		}
 		if (timer_flag[1] == 1)
 		{
@@ -132,9 +123,8 @@ void fsm_setting_run()
 
 		break;
 	case MODE4:
-		// enable_horizontal(0);
-		// display_number_horizontal(yellow_duration_tmp);
-
+		enable_vertical(0);
+		display_number_vertical(4);
 		counter_horizontal = yellow_duration_tmp;
 		update_buffer_horizontal();
 
@@ -166,11 +156,8 @@ void fsm_setting_run()
 		if (isButtonPressed(3) == 1)
 		{
 			yellow_duration = yellow_duration_tmp;
-
 			status_horizontal_traffic = MODE1;
-			// timer_flag[0] = 1;
 			setTimer(0, 1000);
-			setTimer(3, 250);
 		}
 		if (timer_flag[1] == 1)
 		{
