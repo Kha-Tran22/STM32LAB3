@@ -2,7 +2,6 @@
 "./Core/Src/fsm_automatic.o"
 "./Core/Src/fsm_manual.o"
 "./Core/Src/fsm_setting.o"
-"./Core/Src/fsm_traffic.o"
 "./Core/Src/global.o"
 "./Core/Src/led7_segment.o"
 "./Core/Src/main.o"

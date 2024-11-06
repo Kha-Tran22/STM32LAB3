@@ -8,7 +8,6 @@
 #ifndef INC_LED7_SEGMENT_H_
 #define INC_LED7_SEGMENT_H_
 
-#include "main.h"
 #include "global.h"
 
 void display_number_horizontal(int number);

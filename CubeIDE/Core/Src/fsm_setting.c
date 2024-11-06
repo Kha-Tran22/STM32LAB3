@@ -12,10 +12,13 @@ void fsm_setting_run()
 	switch (status_horizontal_traffic)
 	{
 	case INIT_MODE:
-		status_horizontal_traffic = MODE1;
-		clear_all_7seg();
-		clear_all_led();
-		setTimer(0, 3000); // đợi nút nhấn 1 chuyển mode
+		status_horizontal_traffic = MODE2;
+		clear_all();
+		setTimer(1, 10000); // đợi nút 1 chuyển mode
+		setTimer(2, 250); 
+		setTimer(3, 250); 
+
+		set_tmp_duration();
 
 		break;
 	case MODE1:
@@ -29,11 +32,9 @@ void fsm_setting_run()
 			status_horizontal_traffic = MODE2;
 			setTimer(1, 10000); // đợi nút 1 chuyển mode
 			setTimer(2, 250); 
-			setTimer(3, 250); 
+			setTimer(3, 250);
 		}
-		red_duration_tmp = red_duration;
-		green_duration_tmp = green_duration;
-		yellow_duration_tmp = yellow_duration;
+		set_tmp_duration();
 
 		break;
 	case MODE2:
@@ -71,6 +72,7 @@ void fsm_setting_run()
 		{
 			red_duration = red_duration_tmp;
 			status_horizontal_traffic = MODE1;
+			clear_all();
 			setTimer(0, 1000);
 		}
 		if (timer_flag[1] == 1)
@@ -114,6 +116,7 @@ void fsm_setting_run()
 		{
 			green_duration = green_duration_tmp;
 			status_horizontal_traffic = MODE1;
+			clear_all();
 			setTimer(0, 1000);
 		}
 		if (timer_flag[1] == 1)
@@ -144,7 +147,8 @@ void fsm_setting_run()
 		if (isButtonPressed(1) == 1)
 		{
 			status_horizontal_traffic = MODE1;
-			setTimer(1, 10000);
+			clear_all();
+			setTimer(0, 1000);
 		}
 		if (isButtonPressed(2) == 1)
 		{
@@ -157,6 +161,7 @@ void fsm_setting_run()
 		{
 			yellow_duration = yellow_duration_tmp;
 			status_horizontal_traffic = MODE1;
+			clear_all();
 			setTimer(0, 1000);
 		}
 		if (timer_flag[1] == 1)

@@ -28,3 +28,18 @@ int led_buffer_vertical[2] = {0,3};
 int counter_horizontal = 5;
 int counter_vertical = 3;
 
+int time_scan_7seg = 500;
+
+void set_tmp_duration()
+{
+    red_duration_tmp = red_duration;
+	green_duration_tmp = green_duration;
+	yellow_duration_tmp = yellow_duration;
+}
+
+void clear_all()
+{
+    clear_all_7seg();
+    clear_all_led();
+}
+

@@ -8,7 +8,6 @@
 #ifndef INC_TRAFFIC_H_
 #define INC_TRAFFIC_H_
 
-#include "main.h"
 #include "global.h"
 
 void clear_all_led();

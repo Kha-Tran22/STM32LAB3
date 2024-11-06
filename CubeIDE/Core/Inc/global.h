@@ -52,4 +52,9 @@ extern int led_buffer_vertical[2];
 extern int counter_horizontal;
 extern int counter_vertical;
 
+extern int time_scan_7seg;
+
+void set_tmp_duration();
+void clear_all();
+
 #endif /* INC_GLOBAL_H_ */
